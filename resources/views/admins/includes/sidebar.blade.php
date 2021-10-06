@@ -48,6 +48,12 @@
                             Show All
                         </a>
                     </li>
+                    <li class="active">
+                        <a class="menu-item" href="{{ route('admin.candidate.req_index') }}"
+                           data-i18n="nav.dash.ecommerce">
+                            Show All Request
+                        </a>
+                    </li>
                     <li>
                         <a class="menu-item" href="{{route('admin.candidate.create')}}"
                            data-i18n="nav.dash.crypto">
@@ -59,39 +65,39 @@
 
             {{--            this requests space              --}}
 
-            <li class="nav-item  open ">
-                <a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">
-                        Requests
-                    </span>
-                    <span class="badge badge badge-info badge-pill float-right mr-2">
-                        {{App\Candidate::count()}}
-                    </span>
-                </a>
-                <ul class="menu-content">
-                    <li class="active">
-                        <a class="menu-item" href=" {{ route('admin.candidate.requests') }}"
-                           data-i18n="nav.dash.ecommerce">
-                            Refused Request
-                        </a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="  "
-                           data-i18n="nav.dash.crypto">
-                            Waiting For Approval
-                        </a>
-                    </li>
-                </ul>
-            </li>
+{{--            <li class="nav-item  open ">--}}
+{{--                <a href=""><i class="la la-male"></i>--}}
+{{--                    <span class="menu-title" data-i18n="nav.dash.main">--}}
+{{--                        Requests--}}
+{{--                    </span>--}}
+{{--                    <span class="badge badge badge-info badge-pill float-right mr-2">--}}
+{{--                        {{App\Candidate::count()}}--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <ul class="menu-content">--}}
+{{--                    <li class="active">--}}
+{{--                        <a class="menu-item" href=" {{ route('admin.candidate.requests') }}"--}}
+{{--                           data-i18n="nav.dash.ecommerce">--}}
+{{--                            Refused Request--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a class="menu-item" href="  "--}}
+{{--                           data-i18n="nav.dash.crypto">--}}
+{{--                            Waiting For Approval--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
 {{-----------------------------------------------------------------------------------------}}
             <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">المتاجر  </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">requests  </span>
                     <span
                         class="badge badge badge-success badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href=""
-                                          data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class="active"><a class="menu-item" href="{{ route('admin.candidate.requests') }}"
+                                          data-i18n="nav.dash.ecommerce"> getAll </a>
                     </li>
                     <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
                             متجر  </a>

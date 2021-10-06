@@ -13,7 +13,7 @@ class Candidate extends Model
         'father_name','mother_name', 'email',
         'password','age','n_number',
         'nationality','description','election_title',
-        'election_campaign','governorate','image'
+        'election_campaign','governorate','image','approved'
     ];
     public function getImagePathAttribute($value)
     {

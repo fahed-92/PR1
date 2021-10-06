@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,7 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('guest');
+        $this->middleware('guest');
     }
 
     /**
@@ -50,7 +54,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
+            'first-name' => ['required', 'string', 'max:255'],
             'last-name' => ['required', 'string', 'max:255'],
             'father-name' => ['required', 'string', 'max:255'],
             'mother-name' => ['required', 'string', 'max:255'],
@@ -69,11 +73,18 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return User|Application|RedirectResponse|Redirector
      */
     protected function create(array $data)
     {
-        return User::create([
+//        $this->validator($data)->validate();
+//
+//        event(new Registered($user = $this->create($data)));
+//
+//        $this->guard()->login($user);
+
+
+        $user=User::create([
             'first-name' => $data['first-name'],
             'last-name' => $data['last-name'],
             'father-name' => $data['father-name'],
@@ -86,5 +97,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+         $this->guard()->login($user);
+
+//        auth()->login($user);
+        return redirect()->route('home')
+            ->with('success', 'Welcome ' . $user->name . '!');
+//        return redirect('elctionprog.get');
     }
 }

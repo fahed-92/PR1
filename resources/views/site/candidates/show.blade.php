@@ -33,8 +33,8 @@
                         <h3 class="card-text">description: {{$candidate->description}}</h3>
                         <h3 class="card-text">election_campaign: {{$candidate->election_campaign}}</h3>
                         <h3 class="card-text">governorate: {{$candidate->governorate}}</h3>
-                        <a href="{{route('candidates.show',$candidate->id)}}" class="btn btn-primary">Candidates</a>
-{{--                        <a href="{{route('candidates.create')}}" class="btn btn-primary">candidacy request</a>--}}
+                        <a href="{{route('candidates.show',$candidate->id)}}" class="btn btn-primary">Return</a>
+                        <a href="{{route('candidate.vote',$candidate->id)}}" class="btn btn-primary">Give My Vote</a>
                     </div>
                 </div>
             </div>
