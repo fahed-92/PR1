@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-    protected $primaryKey='id';
+    protected $primaryKey=['user_id','election_program_id'];
     protected $table='votes';
     protected $fillable=['user_id','candidate_id','election_program_id'];
 

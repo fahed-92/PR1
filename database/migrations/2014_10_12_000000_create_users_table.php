@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('father-name');
             $table->string('mother-name');
             $table->unsignedInteger('age');
-            $table->unsignedInteger('n-number')->unique();
+            $table->unsignedBigInteger('n-number')->unique();
             $table->string('nationality');
             $table->string('governorate');
             $table->string('email')->unique();

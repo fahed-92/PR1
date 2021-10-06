@@ -29,6 +29,7 @@ Route::group(['prefix'=>'admin/electionprog'],function(){
 
 Route::group(['prefix'=>'admin/candidate'],function(){
     route::get('/','CandidatesController@index')->name('admin.candidate');
+    route::get('/req','CandidatesController@req_index')->name('admin.candidate.req_index');
     route::get('/{id}','CandidatesController@show_request')->name('admin.candidate.show');
     route::get('/create','CandidatesController@create')->name('admin.candidate.create');
     route::post('/store','CandidatesController@store')->name('admin.candidate.store');
@@ -40,5 +41,4 @@ Route::group(['prefix'=>'admin/candidate'],function(){
     route::get('/show_requests/{id}','CandidatesController@show_request')->name('admin.candidate.show_request');
     route::PUT('/approved/{id}','CandidatesController@approved')->name('admin.candidate.approved');
 });
-
 //@define('PAGINATION_COUNT',10);

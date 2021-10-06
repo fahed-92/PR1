@@ -13,6 +13,11 @@ class CandidatesController extends Controller
         $candidates= Candidate::where('approved',1)->get();
         return view('admins.candidates.index')->with('candidates',$candidates);
     }
+    public function req_index()
+    {
+        $candidates= Candidate::where('approved',0)->get();
+        return view('admins.requests.req_index')->with('candidates',$candidates);
+    }
     public function show($id){
         return view('admins.candidates.show')->with('candidate', Candidate::find($id));
     }
@@ -115,19 +120,22 @@ class CandidatesController extends Controller
     }
     public function requests()
     {
-        $candidate=Candidate::where('candidates.approved',0)->get();
-        return view('admins.requests.requests')->with('candidates',$candidate);
+        $candidates=Candidate::where('candidates.approved',0)->get();
+        return view('admins.requests.req_index',compact('candidates'));
     }
     public function show_request($id){
         return view('admins.requests.show_requests')->with('candidate',Candidate::find($id));
     }
     public function approved($id)   {
         try {
-            $candidate = Candidate::find($id);
-            if (!$candidate)
+             $candidate = Candidate::find($id);
+            if (!$candidate){
                 return redirect()->route('admin.candidate')->with(['error' => 'This candidate not found ']);
-            $candidate -> update(['aprroved' => 1 ]);
-            return redirect()->route('admin.candidate')->with(['success' => 'approved Successfully']);
+
+            }
+            $candidate->update(['approved' => 1]);
+            $candidate->save();
+            return redirect()->route('admin.candidate.req_index')->with(['success' => 'approved Successfully']);
 
         } catch (\Exception $ex) {
             return redirect()->route('admin.candidate')->with(['error' => 'sorry']);

@@ -5,13 +5,13 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> Election Programs </h3>
+                    <h3 class="content-header-title"> Requests </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Main Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Election Programs
+                                <li class="breadcrumb-item active">Requests
                                 </li>
                             </ol>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">All election Program </h4>
+                                    <h4 class="card-title">All Requests </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -47,61 +47,47 @@
                                             class="table display nowrap table-striped table-bordered scroll-horizontal">
                                             <thead class="">
                                             <tr>
-                                                <th>Title </th>
-                                                <th> Description</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
+                                                <th>First Name </th>
+                                                <th>Last Name  </th>
+                                                <th>election_title </th>
+                                                <th>election_campaign</th>
+                                                <th>image</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-
-                                            @isset($electionprogs)
-                                                @foreach($electionprogs as $electionprog)
+                                            @isset($candidates)
+                                                @foreach($candidates as $candidate)
                                                     <tr>
-                                                        <td>{{$electionprog -> title}}</td>
-                                                        <td>{{$electionprog -> description}}</td>
-                                                        <td>{{$electionprog -> start_date}}</td>
-                                                        <td> {{$electionprog -> end_date}}</td>
+                                                        <td>
+                                                            {{ $candidate->first_name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $candidate->last_name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $candidate->email }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $candidate->election_title }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $candidate->image }}
+                                                        </td>
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
-                                                                <a href="{{route('admin.electionprog.edit',$electionprog -> id)}}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
-
-                                                                <form action="{{route('admin.electionprog.delete',  $electionprog->id)}}" method="POST">
-                                                                    @method('DELETE')
-                                                                    @csrf
-                                                                    <button class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1 submit"
-                                                                            type="submit" onclick="return confirm('Are you sure you want to delete this post?')">
-                                                                        Delete
-                                                                    </button>
-                                                                </form>
-
-                                                                <form action="{{route('admin.electionprog.status', $electionprog->id)}}" method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1"
-                                                                            type="submit" onclick="return confirm('Are you sure you want to non activat this program')">
-                                                                        @if($electionprog -> active == 0)
-                                                                            Activation
-                                                                        @else
-                                                                            Non Activation
-                                                                        @endif
-                                                                    </button>
-                                                                </form>
+                                                                <a href="{{route('admin.candidate.show_request',$candidate->id)}}"
+                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Show</a>
                                                             </div>
                                                         </td>
+
+                                                    </tr>
                                                     </tr>
                                                 @endforeach
                                             @endisset
-
-
                                             </tbody>
                                         </table>
-                                        <div class="justify-content-center d-flex">
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -29,4 +29,7 @@ Route::get('/candidates/show/{id}','GetCandidateController@show')->name('candida
 Route::get('/candidates/create/{prog_id}','GetCandidateController@create')->name('candidates.create');
 Route::post('/candidates/store','GetCandidateController@store')->name('candidates.store');
 
+Route::get('warning_vote/{id}','VoteController@warning')->name('candidate.vote');
+Route::post('warning_vote','VoteController@store')->name('vote.store');
+
 

@@ -8,9 +8,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Election Program</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">
+                        @if(Auth::check())
+                            {{ auth()->user()->email }}
+                        @else
+login please
+                        @endif
+
+                    </a>
+                </li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About US</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Help</a></li>
+                @if(Auth::check())
+                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" >
+                        @csrf
+                    <li class="nav-item mx-0 mx-lg-1"><a href="{{ route('logout') }}" >Logout</a>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a href="{{route('login')}}"><i class="fa fa-user"></i>Login</a>
+                    </li>
+                @endif
+{{--                <li class="nav-item mx-0 mx-lg-1"><form method="POST" action="{{ route('logout') }}">--}}
+{{--                        @csrf--}}
+{{--                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('logout') }}">Logout</a>--}}
+{{--                    </form>--}}
+{{--                </li>--}}
             </ul>
         </div>
     </div>
